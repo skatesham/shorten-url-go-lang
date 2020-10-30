@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "shan"
+    ports:
+      - "15432:5432"
+    volumes:
+      - /home/shazam/dev/databases/go/postgresql:/var/lib/postgresql/data
+      - ./resources/data/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+    networks:
+      - postgres-network
+      
+  pgadmin-go:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "sham.vinicius@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "shan"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-db
+    networks:
+      - postgres-network
+
+networks: 
+  postgres-network:
+    driver: bridge
