@@ -7,7 +7,7 @@ __Configure environment__
 Requirements:  
 1. [Go Lang](https://golang.org/)
 2. [Docker](https://www.docker.com/)
-3. [Docker Compose](https://docs.docker.com/compose/)
+3. [Docker Compose](https://docs.docker.com/compose/)  
 Observations: You may configure docker to run without root, whereas you gonna need to use `sudo` before docker commands.
 
 The environment consists in:  
@@ -21,23 +21,23 @@ docker-compose up
 ```
 
 Access database throght the url http://localhost:16543/  
-with credentials configure at [docker-compose.yml](https://github.com/skatesham/shorten-url-go-lang/blob/main/reader/docker-compose.yml)
+with credentials configured at [docker-compose.yml](https://github.com/skatesham/shorten-url-go-lang/blob/main/reader/docker-compose.yml), default look as following:
 ```
 username: sham.vinicius@gmail.com
 password: shan
 ```
-Create an database called "shorten" and run in it the script [schema.sql](https://github.com/skatesham/shorten-url-go-lang/blob/main/reader/resources/data/schema.sql)  
+Create an database called **"shorten"** and run in it the script [schema.sql](https://github.com/skatesham/shorten-url-go-lang/blob/main/reader/resources/data/schema.sql)  
 
-You may need to check the IP Address that the postgres was built in running:  
+You may need to check the IP Address that the postgres was built in:  
 ```
 docker ps -> for see dockers running
 docker inspect {id-container-docker-postgres} or {name-container-docker-posgres}
 ```
 Find the key "IPAddress" and take its value, should look like this: "172.25.0.2"
 
-Check if are correct in database configuration file [database.go](https://github.com/skatesham/shorten-url-go-lang/blob/main/reader/config/database/database.go)
+Check if are correct in database credentials file [profile.go](https://github.com/skatesham/shorten-url-go-lang/blob/main/reader/config/profile.go)
 
-You might be ready to GO !!!
+**You are ready to GO !!!**
 
 ## Running Application
 For running application you must run (inside reader folder):
