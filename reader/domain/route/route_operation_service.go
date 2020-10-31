@@ -2,7 +2,6 @@ package route
 
 import (
 	"net/url"
-	"shortenUrl/reader/config/database"
 
 	"github.com/google/uuid"
 )
@@ -13,23 +12,10 @@ func CreateRoute(destination string) (Route, string) {
 		return Route{}, "Must be an URL."
 	}
 
-	connection := database.OpenConnectionDatabase()
-	defer connection.Close()
-
-	query := "INSERT INTO ROUTE(NAM_DESTINARION, NAM_SHORT) VALUES ($1, $2)"
-
-	createRouteQueryPrepared, err := connection.Prepare(query)
-
-	defer createRouteQueryPrepared.Close()
-
-	if err != nil {
-		panic(err)
-	}
-
 	shortURL := generateUUID()
-	createRouteQueryPrepared.Exec(destination, shortURL)
+	save(destination, shortURL)
 
-	return GetRoute(shortURL)
+	return findRouteByShortURL(shortURL)
 }
 
 func isURL(str string) bool {
