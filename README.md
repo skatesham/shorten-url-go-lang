@@ -67,7 +67,7 @@ curl -X POST -d '{"destination":"https://www.google.com"}' localhost:8080
 ```
 
 
-In this cenary the "created UUID" will be `dcd95500-6213-4dfa-838f-de1979879476`  
+In this scenario the "created UUID" will be `dcd95500-6213-4dfa-838f-de1979879476`  
 
 __Returning original url:__  
 
