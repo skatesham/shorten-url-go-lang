@@ -1,6 +1,7 @@
 package interfaces
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"shortenUrl/reader/domain/route"
@@ -14,6 +15,7 @@ func GetMappingReadRouteShortURL(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		w.WriteHeader(http.StatusNoContent)
 	}
-	// json.NewEncoder(w).Encode(found)
-	http.Redirect(w, r, found.Destination, http.StatusSeeOther)
+	json.NewEncoder(w).Encode(found)
+	// Redirect to destination option
+	// http.Redirect(w, r, found.Destination, http.StatusSeeOther)
 }
